@@ -8,32 +8,25 @@ struct Node{
 	struct Node* left;
 };
 
-void bt_insert(struct Node* key,int value){
+struct Node* bt_insert(struct Node* key,int value){
 	if(key==NULL){
-		printf("ROOT node invalid");
-		return;
+		struct Node* newNode=(struct Node*)malloc(sizeof(struct Node));
+		newNode->value=value;
+		newNode->left=NULL;
+		newNode->right=NULL;
+		return newNode;
 	}
-	if(key->left==NULL && key->right==NULL){
-		if(value <= key->value){
-			struct Node newNode;
-			newNode.left=NULL;
-			newNode.right=NULL;
-			newNode.value=value;
-			key->left=&newNode;
-			
-		}
-		else{
-			struct Node newNode;
-			newNode.left=NULL;
-			newNode.right=NULL;
-			newNode.value=value;
-			key->right=&newNode;
-		}
+	else if(value<key->value){
+		key->left=bt_insert(key->left,value);
+		return key;
 	}
-	if(key->value<=value)
-		bt_insert(key->left,value);
-	else
-		bt_insert(key->right,value);
+	else{
+		key->right=bt_insert(key->right,value);
+		return key;
+	}
+	printf("Encountered an error");
+	return NULL;
+
 }
 
 struct Node* findMaxAndDelete(struct Node* key,int value){		
@@ -70,10 +63,24 @@ struct Node* bt_delete(struct Node* key,int value){
 		}
 	}
 }
+void printTree(struct Node* key){
+	if(key==NULL)
+		return;
+	printTree(key->left);
+	printf(" %d ",key->value);
+	printTree(key->right);
+}
+		
 int main(){
-	printf("Hello World");
-	struct Node* node=(struct Node*)malloc(sizeof(struct Node));
-
+	struct Node* root=(struct Node*)malloc(sizeof(struct Node));
+	root->value=15;
+	bt_insert(root,5);
+	bt_insert(root,11);
+	bt_insert(root,20);
+	bt_insert(root,12);
+	bt_insert(root,2);
+	bt_delete(root,2);
+	printTree(root);
 }
 
 		
