@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-int findRootOf(int a,int** nodes){		// finds the root of a  
+int uf_findRootOf(int a,int** nodes){		// finds the root of a  
 	if(nodes[a][1]==a)
 		return a;
 	int root=findRootOf(nodes[a][1],nodes);
