@@ -2,18 +2,19 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-int findParentOf(int a,int** nodes){		// finds the parent of a 
+int findRootOf(int a,int** nodes){		// finds the root of a  
 	if(nodes[a][1]==a)
 		return a;
-	return findParentOf(nodes[a][1],nodes);
+	int root=findRootOf(nodes[a][1],nodes);
+	nodes[a][1]=root;			//compression algorithm
 }
 
 bool findSizes(int a,int b,int** nodes,int length){		// return true if set rooted by a is smaller than the one rooted by b
 	int a_ctr=0,b_ctr=0;
 	for(int i=0;i<length;i++){
-		if(findParentOf(i,nodes)==a)
+		if(findRootOf(i,nodes)==a)
 			a_ctr++;
-		else if(findParentOf(i,nodes)==b)
+		else if(findRootOf(i,nodes)==b)
 			b_ctr++;
 	}
 	if(a_ctr<b_ctr)
@@ -31,8 +32,8 @@ void uf_unify(int a,int b,int** nodes,int length){		// two dim array which conta
 		return;
 	}
 
-	int parent_a=findParentOf(a,nodes);
-	int parent_b=findParentOf(b,nodes);
+	int parent_a=findRootOf(a,nodes);
+	int parent_b=findRootOf(b,nodes);
 	if(parent_a==parent_b)
 		return;
 	bool aIsBigger=findSizes(parent_a,parent_b,nodes,length);
