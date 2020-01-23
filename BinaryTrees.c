@@ -43,6 +43,10 @@ struct Node* findMaxAndDelete(struct Node* key,int value){
 }
 
 struct Node* bt_delete(struct Node* key,int value){
+	if(key==NULL){
+		printf("The reuquired node was not found");
+		return NULL;
+	}
 	if(value<key->value){
 		key->left=bt_delete(key->left,value);
 		return key;
