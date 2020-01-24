@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -108,8 +109,35 @@ void hp_print(struct Heap* h){
 	printf("\n\n");
 }
 
+void runUser(struct Heap* h){
+	printf("Select your choice: \n1) offer\n2) poll\n3)Stop");
+	while(true){
+		int choice;
+		scanf("%d",&choice);
+		int polled_value;
+		switch(choice){
+			case 1: 
+				printf("Enter the value: ");
+				int value;
+				scanf("%d",&value);
+				hp_insert(h,value);
+				break;
+			case 2: 
+				polled_value=hp_poll(h);
+				printf("%d polled\n",polled_value);
+				break;
+
+			case 3:
+				printf("Bye");
+				return;
+		}
+	}
+}
+
 int main(){
 	struct Heap* h=initHeap(10);
+	runUser(h);
+	/*
 	hp_insert(h,5);
 	hp_insert(h,3);
 	hp_insert(h,4);
@@ -123,4 +151,5 @@ int main(){
 	printf("%d polled\n",hp_poll(h));
 	printf("%d polled\n",hp_poll(h));
 	printf("%d polled\n",hp_poll(h));
+	*/
 }
