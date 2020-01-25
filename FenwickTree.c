@@ -52,7 +52,7 @@ int query(int* arr,int index){
 }
 
 int ft_query(int* arr,int length,int l,int h){     // l,h are 0 based. gives summation [ l , h ) 
-	if(l<0 || h>=length){
+	if(l<0 || l>=length || h>=length || h<0){
 		printf("Sorry index out of bounds");
 		return INT_MIN;
 	}
@@ -69,6 +69,7 @@ void printArray(int* arr,int length){
 int main(){
 	int arr[]={1,2,3,4,5};
 	int length=5;
+	printArray(arr,length);
 	ft_makeTree(arr,length);
 	while(true){
 		int l,h;
