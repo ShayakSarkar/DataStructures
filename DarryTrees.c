@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+
 void swapValues(int* arr,int ind1,int ind2){
 	int temp=arr[ind1];
 	arr[ind1]=arr[ind2];
@@ -26,6 +27,7 @@ int getValidChild(int* arr,int rootInd,int d,int length){
 		return bestChild;
 	return -1;
 }
+
 void siftDown(int* arr,int rootInd,int d,int length){
 	if(rootInd>=length)
 		return;
@@ -36,6 +38,7 @@ void siftDown(int* arr,int rootInd,int d,int length){
 	swapValues(arr,rootInd,childInd);
 	siftDown(arr,childInd,d,length);
 }
+
 void heapify(int* arr,int rootInd,int d,int length){
 	if(rootInd>=length)
 		return;
@@ -44,11 +47,13 @@ void heapify(int* arr,int rootInd,int d,int length){
 	siftDown(arr,rootInd,d,length);
 
 }
+
 void printHeap(int* arr,int length){
 	for(int i=0;i<length;i++)
 		printf("%d ",arr[i]);
 	printf("\n");
 }
+
 int main(){
 	int length=12;
 	int* arr=(int*)malloc(sizeof(int)*length);

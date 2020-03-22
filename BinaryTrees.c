@@ -76,7 +76,6 @@ void printTree(struct Node* key){
 }
 		
 int main(){
-	printf("One of the major things that I have ever programmed has come of this thing...");
 	struct Node* root=(struct Node*)malloc(sizeof(struct Node));
 	root->value=15;
 	bt_insert(root,5);
